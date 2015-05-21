@@ -5,12 +5,14 @@ import datetime
 now = datetime.datetime.now()
 current_day = now.day
 
+request = urllib.request.Request("http://api.wunderground.com/api/YOURKEYHERE/geolookup/conditions/q/MD/Williamsport.json")
 response = urllib.request.urlopen(request)
 encoding = response.info().get_param('charset', 'utf8')
 data = json.loads(response.read().decode(encoding))
 
 current_temp = int(data['current_observation']['temp_f'])
 
+request = urllib.request.Request("http://api.wunderground.com/api/YOURKEYHERE/geolookup/forecast/q/MD/Williamsport.json")
 response = urllib.request.urlopen(request)
 encoding = response.info().get_param('charset', 'utf8')
 data = json.loads(response.read().decode(encoding))
